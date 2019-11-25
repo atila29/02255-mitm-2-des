@@ -3,4 +3,4 @@ project(02255_mitm_2_des C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_library(02255_mitm_2_des library.c library.h)
+add_executable(02255_mitm_2_des main.c)
