@@ -10,7 +10,7 @@ encMSG0 = key0.encrypt(b"blablabla", padding=True)
 encMSG1 = key1.encrypt(encMSG0)
 
 def pad(key, size):
-    padding = "".join(["0" for i in range(0, size - len(key))])
+    padding = "".join(["0" for i in range(0, size - len(key)-8)])
     paddedKey = padding + key
     evenBytesPaddedKey = []
     for i in range(0,8):
@@ -24,16 +24,16 @@ def pad(key, size):
     return evenBytesPaddedKey
 
 keys = range(0, 2 ** 20)
-print(keys[3])
-print("{0:b}".format(keys[3]))
+# print(keys[3])
+# print("{0:b}".format(keys[3]))
 print(pad("1011", 64))
-print("{0:b}".format(23))
-"""
+# print("{0:b}".format(23))
+
 keysInBinary = [pad("{0:b}".format(k), 64) for k in keys]
-print(keysInBinary[0])
-print(keysInBinary[1])
-print(keysInBinary[10])
-print(keysInBinary[-1])
-"""
-key0 = DesKey(pad("11101000011100010100", 64))
-key1 = DesKey(pad("10001101111111111111", 64))
+# print(keysInBinary[0])
+# print(keysInBinary[1])
+# print(keysInBinary[10])
+# print(keysInBinary[-1])
+
+# key0 = DesKey(pad("11101000011100010100", 64))
+# key1 = DesKey(pad("10001101111111111111", 64))
