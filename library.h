@@ -1,0 +1,6 @@
+#ifndef INC_02255_MITM_2_DES_LIBRARY_H
+#define INC_02255_MITM_2_DES_LIBRARY_H
+
+void hello(void);
+
+#endif //INC_02255_MITM_2_DES_LIBRARY_H
