@@ -30,10 +30,24 @@ print(pad("1011", 64))
 # print("{0:b}".format(23))
 
 keysInBinary = [pad("{0:b}".format(k), 64) for k in keys]
-# print(keysInBinary[0])
-# print(keysInBinary[1])
-# print(keysInBinary[10])
-# print(keysInBinary[-1])
 
-# key0 = DesKey(pad("11101000011100010100", 64))
-# key1 = DesKey(pad("10001101111111111111", 64))
+key0 = DesKey(pad("11101000011100010100", 64))
+key1 = DesKey(pad("10001101111111111111", 64))
+
+plaintext = b"dakkedak"
+
+encryptedTable = [[k, DesKey(k).encrypt(plaintext, padding = False)] for k in keysInBinary]
+encryptedTable.sort(lambda x: x[1])
+print(encryptedTable[1])
+print(encryptedTable[2])
+print(encryptedTable[3])
+
+# des2
+cipher = key1.encrypt(key0.encrypt(plaintext, padding=False), padding=False)
+print(cipher)
+
+decryptedTable = [[k, DesKey(k).decrypt(cipher, padding = False)] for k in keysInBinary]
+decryptedTable.sort(lambda x: x[1])
+
+
+
