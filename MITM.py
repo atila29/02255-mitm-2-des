@@ -16,16 +16,24 @@ def pad(key, size):
     for i in range(0,8):
         for j in range(0,7):
             evenBytesPaddedKey.append(paddedKey[i * 7 + j])
-            print(paddedKey[i * 7 + j], end = '')
-        print(str(evenBytesPaddedKey[i * 8: i * 8 + 7].count('1') % 2))
         evenBytesPaddedKey.append(str(evenBytesPaddedKey[i * 8: i * 8 + 7].count('1') % 2))
 
     evenBytesPaddedKey = "".join(evenBytesPaddedKey)
     evenBytesPaddedKey = int(evenBytesPaddedKey, 2)
-    evenBytesPaddedKey = evenBytesPaddedKey.to_bytes(8, byteorder='big')
-    print(evenBytesPaddedKey)
+    evenBytesPaddedKey = evenBytesPaddedKey.to_bytes(size // 8, byteorder='big')
     return evenBytesPaddedKey
 
-print(len(pad("11101000011100010100", 56)))
-key0 = DesKey(pad("11101000011100010100", 56))
-#key1 = DesKey(pad("10001101111111111111", 56))
+keys = range(0, 2 ** 20)
+print(keys[3])
+print("{0:b}".format(keys[3]))
+print(pad("1011", 64))
+print("{0:b}".format(23))
+"""
+keysInBinary = [pad("{0:b}".format(k), 64) for k in keys]
+print(keysInBinary[0])
+print(keysInBinary[1])
+print(keysInBinary[10])
+print(keysInBinary[-1])
+"""
+key0 = DesKey(pad("11101000011100010100", 64))
+key1 = DesKey(pad("10001101111111111111", 64))
