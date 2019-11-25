@@ -37,7 +37,7 @@ key1 = DesKey(pad("10001101111111111111", 64))
 plaintext = b"dakkedak"
 
 encryptedTable = [[k, DesKey(k).encrypt(plaintext, padding = False)] for k in keysInBinary]
-encryptedTable.sort(lambda x: x[1])
+# encryptedTable.sort(lambda x: x[1])
 print(encryptedTable[1])
 print(encryptedTable[2])
 print(encryptedTable[3])
@@ -47,7 +47,9 @@ cipher = key1.encrypt(key0.encrypt(plaintext, padding=False), padding=False)
 print(cipher)
 
 decryptedTable = [[k, DesKey(k).decrypt(cipher, padding = False)] for k in keysInBinary]
-decryptedTable.sort(lambda x: x[1])
+# decryptedTable.sort(lambda x: x[1])
+
+result = set(encryptedTable.map(lambda x: x[1])).intersection(decryptedTable.map(lambda x: x[1]))
 
 
 
