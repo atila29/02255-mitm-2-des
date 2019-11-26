@@ -1,5 +1,6 @@
 import des
 from des import DesKey
+import ast 
 
 key0 = DesKey(b"000000000000000000000000")
 key1 = DesKey(b"111111111111111111111111")
@@ -35,19 +36,20 @@ key1 = DesKey(pad("10001101111111111111", 64))
 
 plaintext = b"dakkedak"
 
-encryptedTable = [[k, DesKey(k).encrypt(plaintext, padding = False)] for k in keysInBinary]
+# encryptedTable = [[k, DesKey(k).encrypt(plaintext, padding = False)] for k in keysInBinary]
 
-with open("encryptedTable.txt", "w") as f:
-    for s in encryptedTable:
-        f.write(str(s) +"\n")
+# with open("encryptedTable.txt", "w") as f:
+#     for s in encryptedTable:
+#         f.write(str(s) +"\n")
 
-# with open("encryptedTable.txt", "r") as f:
-#     for line in f:
-#         score.append(int(line.strip()))
+encryptedTable = []
 
+with open("encryptedTable.txt", "r") as f:
+    for line in f:
+        encryptedTable.append(ast.literal_eval(line))
 
 # encryptedTable.sort(lambda x: x[1])
-print(encryptedTable[1])
+print(type(encryptedTable[1]))
 print(encryptedTable[2])
 print(encryptedTable[3])
 
@@ -56,19 +58,21 @@ cipher = key1.encrypt(key0.encrypt(plaintext, padding=False), padding=False)
 print(cipher)
 
 
-decryptedTable = [[k, DesKey(k).decrypt(cipher, padding = False)] for k in keysInBinary]
-# decryptedTable.sort(lambda x: x[1])
-print("step 2")
+# decryptedTable = [[k, DesKey(k).decrypt(cipher, padding = False)] for k in keysInBinary]
+# # decryptedTable.sort(lambda x: x[1])
+# print("step 2")
 
-with open("decryptedTable.txt", "w") as f:
-    for s in decryptedTable:
-        f.write(str(s) +"\n")
+# with open("decryptedTable.txt", "w") as f:
+#     for s in decryptedTable:
+#         f.write(str(s) +"\n")
 
-# with open("decryptedTable.txt", "r") as f:
-#     for line in f:
-#         score.append(int(line.strip()))
+decryptedTable = []
 
-# result = set(map(lambda x: x[1], encryptedTable)).intersection(map(lambda x: x[1], decryptedTable))
-# print(result)
+with open("decryptedTable.txt", "r") as f:
+    for line in f:
+        decryptedTable.append(ast.literal_eval(line))
+
+result = set(map(lambda x: x[1], encryptedTable)).intersection(map(lambda x: x[1], decryptedTable))
+print(result)
 
 
