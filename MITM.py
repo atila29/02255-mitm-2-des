@@ -31,8 +31,16 @@ keys = range(0, 2 ** 20)
 
 keysInBinary = [pad("{0:b}".format(k), 64) for k in keys]
 
-key0 = DesKey(pad("11101000011100010100", 64))
-key1 = DesKey(pad("10001101111111111111", 64))
+k0 = pad("11101000011100010100", 64)
+k1 = pad("10001101111111111111", 64)
+
+print('keys')
+print(k0)
+print(k1)
+print('end keys')
+
+key0 = DesKey(k0)
+key1 = DesKey(k1)
 
 plaintext = b"dakkedak"
 
@@ -72,7 +80,18 @@ with open("decryptedTable.txt", "r") as f:
     for line in f:
         decryptedTable.append(ast.literal_eval(line))
 
-result = set(map(lambda x: x[1], encryptedTable)).intersection(map(lambda x: x[1], decryptedTable))
+result = set(map(lambda x: x[1], encryptedTable)).intersection(map(lambda x: x[1], decryptedTable)).pop()
 print(result)
 
+encResult = filter(lambda entry: entry[1] == result, encryptedTable)
+k0_entry = list(encResult)[0]
+
+decResult = filter(lambda entry: entry[1] == result, decryptedTable)
+k1_entry = list(decResult)[0]
+
+print('our first entry')
+print(k0_entry)
+
+print('our second entry')
+print(k1_entry)
 
