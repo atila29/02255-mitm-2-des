@@ -87,3 +87,6 @@ print(k0_entry)
 print('our second entry')
 print(k1_entry)
 
+
+assert k0_entry[0] == k0
+assert k1_entry[0] == k1
