@@ -2,14 +2,6 @@ import des
 from des import DesKey
 import ast 
 
-key0 = DesKey(b"000000000000000000000000")
-key1 = DesKey(b"111111111111111111111111")
-
-key0.is_single()
-
-encMSG0 = key0.encrypt(b"blablabla", padding=True)
-encMSG1 = key1.encrypt(encMSG0)
-
 def pad(key, size):
     padding = "".join(["0" for i in range(0, size - len(key)-8)])
     paddedKey = padding + key
